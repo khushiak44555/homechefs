@@ -104,7 +104,7 @@ const vouchers = [
   },
 ];
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   return (
@@ -137,14 +137,17 @@ const HomeScreen = () => {
           </View>
         </View>
         {/* Search Bar */}
-        <View style={styles.searchBar}>
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Search Foods, Restaurants.."
-            placeholderTextColor="#999"
-          />
+
+        {/* Search Bar */}
+        <TouchableOpacity
+          style={styles.searchBar}
+          onPress={() => navigation.navigate('SearchScreen')}
+          activeOpacity={0.7}
+        >
+          <MaterialIcons name="search" size={22} color="#999" style={{ marginRight: 8 }} />
+          <Text style={styles.searchPlaceholder}>Search Foods, Restaurants..</Text>
           <MaterialIcons name="keyboard-voice" size={22} color={colors.primary} style={{ marginLeft: 8 }} />
-        </View>
+        </TouchableOpacity>
         {/* Special Offers */}
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Special Offers</Text>
@@ -164,7 +167,7 @@ const HomeScreen = () => {
         {/* Categories */}
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Categories</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('CategoryScreen')}>
             <Text style={styles.sectionAction}>See All</Text>
           </TouchableOpacity>
         </View>
@@ -343,8 +346,13 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     marginHorizontal: 18,
     paddingHorizontal: 16,
-    paddingVertical: 10,
+    paddingVertical: 12,
     marginBottom: 16,
+  },
+  searchPlaceholder: {
+    flex: 1,
+    fontSize: 16,
+    color: '#999',
   },
   searchInput: {
     flex: 1,
