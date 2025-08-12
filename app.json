@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "HomeChefs",
+    "slug": "homechefs",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FF7F5C"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "statusBarStyle": "dark"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FF7F5C"
+      },
+      "statusBarStyle": "dark",
+      "statusBarBackgroundColor": "#FF7F5C"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
