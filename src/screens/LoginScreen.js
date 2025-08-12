@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     justifyContent: 'flex-start',
     paddingTop: 40,
+    alignItems: 'center',
   },
   appTitle: {
     fontSize: 48,

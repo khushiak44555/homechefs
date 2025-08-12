@@ -56,7 +56,7 @@ const foods = [
     reviews: '1.2k',
     image: require('../../assets/images/noodles.jpg'),
   },
-      {
+  {
     key: 'pancakes',
     name: 'Pancakes',
     price: '$2.00',
@@ -196,10 +196,10 @@ const HomeScreen = () => {
         </ScrollView>
         {/* Foods */}
         <ScrollView
-  horizontal
-  showsHorizontalScrollIndicator={false}
-  contentContainerStyle={styles.foodRow}
->
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.foodRow}
+        >
           {foods.map(food => (
             <View key={food.key} style={styles.foodCard}>
               <Image source={food.image} style={styles.foodImage} />
@@ -591,6 +591,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     paddingVertical: 14,
+    paddingBottom: 50,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     shadowColor: '#000',

@@ -46,6 +46,7 @@ const RegisterScreen = ({ route, navigation }) => {
       {/* Orange Header with only App Name */}
       <View style={styles.header}>
         <Text style={styles.appTitle}>HomeChefs</Text>
+        <Text style={styles.subtitle}>Home cooked foods, delivered in a click!</Text>
       </View>
       {/* White Drawer/Form */}
       <KeyboardAvoidingView
