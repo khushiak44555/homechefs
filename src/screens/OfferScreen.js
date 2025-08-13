@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
   },
   categoryTag: {
     alignSelf: 'flex-start',
-    backgroundColor: '#ff6b6b',
+    backgroundColor: '#FCA652',
     paddingHorizontal: 6, // Reduced from 8
     paddingVertical: 3, // Reduced from 4
     borderRadius: 10, // Reduced from 12
@@ -289,7 +289,7 @@ const styles = StyleSheet.create({
     marginRight: 4,
   },
   codeTag: {
-    backgroundColor: '#ff6b6b',
+    backgroundColor: '#FCA652',
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 6,

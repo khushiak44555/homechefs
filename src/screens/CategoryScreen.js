@@ -128,7 +128,7 @@ const CategoryScreen = ({ navigation }) => {
                         <TouchableOpacity
                             key={category.key}
                             style={styles.categoryCard}
-                            onPress={() => navigation.navigate('BurgerListScreen', { categoryName: category.name })}
+                            onPress={() => navigation.navigate('BurgerList', { categoryName: category.name })}
                         >
                             <View style={styles.categoryImageContainer}>
                                 <Image source={category.image} style={styles.categoryImage} />

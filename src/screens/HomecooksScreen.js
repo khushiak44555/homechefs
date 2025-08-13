@@ -185,7 +185,7 @@ const HomecooksScreen = ({ navigation }) => {
           <TouchableOpacity 
             key={restaurant.key} 
             style={styles.gridCard}
-            onPress={() => navigation.navigate('RestaurantDetailScreen', { restaurant })}
+            onPress={() => navigation.navigate('RestaurantDetail', { restaurant })}
             activeOpacity={0.8}
           >
             <Image source={restaurant.image} style={styles.gridImage} />

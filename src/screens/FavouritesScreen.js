@@ -161,7 +161,7 @@ const FavouritesScreen = ({ navigation }) => {
                     <MaterialIcons 
                       name={restaurant.isFavourite ? "favorite" : "favorite-border"} 
                       size={18} 
-                      color="#ff6b6b" 
+                      color="#FCA652" 
                     />
                   </TouchableOpacity>
                   
@@ -175,7 +175,7 @@ const FavouritesScreen = ({ navigation }) => {
                   <Text style={styles.restaurantCuisine}>{restaurant.cuisine}</Text>
                   
                   <View style={styles.restaurantDetails}>
-                    <MaterialIcons name="access-time" size={12} color="#ff6b6b" />
+                    <MaterialIcons name="access-time" size={12} color="#FCA652" />
                     <Text style={styles.restaurantTime}>{restaurant.time} • {restaurant.distance}</Text>
                   </View>
                 </View>
@@ -212,7 +212,7 @@ const FavouritesScreen = ({ navigation }) => {
                     <MaterialIcons 
                       name={food.isFavourite ? "favorite" : "favorite-border"} 
                       size={14} 
-                      color="#ff6b6b" 
+                      color="#FCA652" 
                     />
                   </TouchableOpacity>
                 </View>
@@ -221,7 +221,7 @@ const FavouritesScreen = ({ navigation }) => {
                   <Text style={styles.foodName}>{food.name}</Text>
                   
                   <View style={styles.ratingContainer}>
-                    <MaterialIcons name="star" size={12} color="#ff6b6b" />
+                    <MaterialIcons name="star" size={12} color="#FCA652" />
                     <Text style={styles.foodRating}>{food.rating}</Text>
                     <Text style={styles.reviewCount}>({food.reviews})</Text>
                   </View>
@@ -293,7 +293,7 @@ const styles = StyleSheet.create({
   },
   seeAllText: {
     fontSize: 14,
-    color: '#ff6b6b',
+    color: '#FCA652',
     fontWeight: '600',
   },
   restaurantsContainer: {
@@ -326,7 +326,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 12,
     left: 12,
-    backgroundColor: '#ff6b6b',
+    backgroundColor: '#FCA652',
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 8,
@@ -421,7 +421,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 4,
     left: 4,
-    backgroundColor: '#ff6b6b',
+    backgroundColor: '#FCA652',
     paddingHorizontal: 4,
     paddingVertical: 2,
     borderRadius: 4,
@@ -488,7 +488,7 @@ const styles = StyleSheet.create({
   currentPrice: {
     fontSize: 12,
     fontWeight: 'bold',
-    color: '#ff6b6b',
+    color: '#FCA652',
   },
   bottomNav: {
     flexDirection: 'row',

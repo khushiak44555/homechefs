@@ -119,7 +119,7 @@ const AppNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator 
-        initialRouteName="MainApp"
+        initialRouteName="Login"
         screenOptions={{ headerShown: false }}
       >
         {/* Auth Flow */}

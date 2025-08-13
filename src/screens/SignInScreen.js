@@ -125,7 +125,7 @@ const SignInScreen = ({ navigation }) => {
         {/* Continue Button */}
         <CustomButton
           title="Continue"
-          onPress={() => navigation.navigate('Home')}
+          onPress={() => navigation.navigate('MainApp')}
           variant="primary"
           style={styles.continueButton}
         />

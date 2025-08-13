@@ -46,14 +46,14 @@ const LoginScreen = ({ navigation }) => {
         {/* Buttons Container */}
         <View style={styles.buttonsContainer}>
           <CustomButton
-            title="Login with Number"
+            title="Start with Number"
             onPress={handleNumberLogin}
             variant="primary"
             style={styles.button}
           />
           
           <CustomButton
-            title="Login with Email"
+            title="Start with Email"
             onPress={handleEmailLogin}
             variant="secondary"
             style={styles.button}

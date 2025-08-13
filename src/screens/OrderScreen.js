@@ -260,7 +260,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 8, // Reduced from 12
     left: 8, // Reduced from 12
-    backgroundColor: '#ff6b6b',
+    backgroundColor: '#FCA652',
     paddingHorizontal: 6, // Reduced from 8
     paddingVertical: 3, // Reduced from 4
     borderRadius: 4, // Reduced from 6
@@ -305,7 +305,7 @@ const styles = StyleSheet.create({
   currentOrderPrice: {
     fontSize: 14, // Reduced from 18
     fontWeight: 'bold',
-    color: '#ff6b6b',
+    color: '#FCA652',
     marginBottom: 4, // Reduced from 8
   },
   orderTimeInfo: {
@@ -325,7 +325,7 @@ const styles = StyleSheet.create({
   },
   trackButton: {
     flex: 1,
-    backgroundColor: '#ff6b6b',
+    backgroundColor: '#FCA652',
     paddingVertical: 8, // Reduced from 12
     borderRadius: 6, // Reduced from 8
     alignItems: 'center',
@@ -342,10 +342,10 @@ const styles = StyleSheet.create({
     borderRadius: 6, // Reduced from 8
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#ff6b6b',
+    borderColor: '#FCA652',
   },
   orderAgainButtonText: {
-    color: '#ff6b6b',
+    color: '#FCA652',
     fontSize: 14, // Reduced from 16
     fontWeight: 'bold',
   },
@@ -360,16 +360,16 @@ const styles = StyleSheet.create({
     paddingVertical: 6, // Reduced from 8
     borderRadius: 16, // Reduced from 20
     borderWidth: 1,
-    borderColor: '#ff6b6b',
+    borderColor: '#FCA652',
     backgroundColor: '#fff',
   },
   activeFilterTab: {
-    backgroundColor: '#ff6b6b',
+    backgroundColor: '#FCA652',
   },
   filterTabText: {
     fontSize: 12, // Reduced from 14
     fontWeight: '600',
-    color: '#ff6b6b',
+    color: '#FCA652',
   },
   activeFilterTabText: {
     color: '#fff',
@@ -414,7 +414,7 @@ const styles = StyleSheet.create({
   orderPrice: {
     fontSize: 13, // Reduced from 14
     fontWeight: 'bold',
-    color: '#ff6b6b',
+    color: '#FCA652',
     marginBottom: 6, // Reduced from 12
   },
   reorderButton: {
@@ -423,12 +423,12 @@ const styles = StyleSheet.create({
     paddingVertical: 6, // Reduced from 8
     backgroundColor: '#fff',
     borderWidth: 1,
-    borderColor: '#ff6b6b',
+    borderColor: '#FCA652',
     borderRadius: 4, // Reduced from 6
     alignItems: 'center',
   },
   reorderButtonText: {
-    color: '#ff6b6b',
+    color: '#FCA652',
     fontSize: 11, // Reduced from 12
     fontWeight: '600',
   },

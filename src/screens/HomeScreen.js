@@ -19,6 +19,11 @@ const categories = [
   { key: 'all', label: 'All', icon: <MaterialCommunityIcons name="food" size={20} /> },
   { key: 'north', label: 'North Indian', icon: <MaterialCommunityIcons name="hamburger" size={20} /> },
   { key: 'biryani', label: 'Biryani', icon: <MaterialCommunityIcons name="pizza" size={20} /> },
+  { key: 'chinese', label: 'Chinese', icon: <MaterialCommunityIcons name="noodles" size={20} /> },
+  { key: 'south', label: 'South Indian', icon: <MaterialCommunityIcons name="food-variant" size={20} /> },
+  { key: 'desserts', label: 'Desserts', icon: <MaterialCommunityIcons name="cupcake" size={20} /> },
+  { key: 'beverages', label: 'Beverages', icon: <MaterialCommunityIcons name="coffee" size={20} /> },
+  { key: 'fast', label: 'Fast Food', icon: <MaterialCommunityIcons name="french-fries" size={20} /> },
 ];
 
 const offers = [
@@ -137,39 +142,36 @@ const HomeScreen = ({ navigation }) => {
           <View style={styles.topIcons}>
             <TouchableOpacity
               style={styles.iconCircle}
-              onPress={() => navigation.navigate('NotificationsScreen')}
+              onPress={() => navigation.navigate('Notifications')}
               activeOpacity={0.7}
             >
               <MaterialCommunityIcons name="bell-outline" size={22} color={colors.primary} />
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.iconCircle}
-              onPress={() => navigation.navigate('CartScreen')}
+              onPress={() => navigation.navigate('Cart')}
               activeOpacity={0.7}
             >
               <MaterialCommunityIcons name="shopping-outline" size={22} color={colors.primary} />
             </TouchableOpacity>
           </View>
         </View>
-        {/* Search Bar */}
 
         {/* Search Bar */}
         <TouchableOpacity
           style={styles.searchBar}
-          onPress={() => navigation.navigate('SearchScreen')}
+          onPress={() => navigation.navigate('Search')}
           activeOpacity={0.7}
         >
           <MaterialIcons name="search" size={22} color="#999" style={{ marginRight: 8 }} />
           <Text style={styles.searchPlaceholder}>Search Foods, Restaurants..</Text>
           <MaterialIcons name="keyboard-voice" size={22} color={colors.primary} style={{ marginLeft: 8 }} />
         </TouchableOpacity>
+
         {/* Special Offers */}
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Special Offers</Text>
-          <TouchableOpacity
-            style={styles.seeAllButton}
-            onPress={navigateToOffers}
-          >
+          <TouchableOpacity onPress={() => navigation.navigate('OffersTab')}>
             <Text style={styles.seeAllText}>See All</Text>
           </TouchableOpacity>
         </View>
@@ -182,10 +184,11 @@ const HomeScreen = ({ navigation }) => {
             </View>
           ))}
         </ScrollView>
+
         {/* Categories */}
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Categories</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('CategoryScreen')}>
+          <TouchableOpacity onPress={() => navigation.navigate('Category')}>
             <Text style={styles.sectionAction}>See All</Text>
           </TouchableOpacity>
         </View>
@@ -215,6 +218,7 @@ const HomeScreen = ({ navigation }) => {
             );
           })}
         </ScrollView>
+
         {/* Foods */}
         <ScrollView
           horizontal
@@ -222,52 +226,72 @@ const HomeScreen = ({ navigation }) => {
           contentContainerStyle={styles.foodRow}
         >
           {foods.map(food => (
-            <View key={food.key} style={styles.foodCard}>
-              <Image source={food.image} style={styles.foodImage} />
-              {food.discount ? (
-                <View style={styles.discountTag}>
-                  <Text style={styles.discountText}>{food.discount}</Text>
-                </View>
-              ) : null}
-              <Text style={styles.foodName}>{food.name}</Text>
-              <View style={styles.foodRatingRow}>
-                <MaterialIcons name="star" size={14} color={colors.primary} />
-                <Text style={styles.foodRating}> {food.rating}</Text>
-                <Text style={styles.foodReviews}>({food.reviews})</Text>
-              </View>
-              <View style={styles.foodPriceRow}>
-                {food.oldPrice ? (
-                  <Text style={styles.foodOldPrice}>{food.oldPrice}</Text>
+            <TouchableOpacity key={food.key} style={styles.foodCard}>
+              <View style={styles.foodImageContainer}>
+                <Image source={food.image} style={styles.foodImage} />
+                {food.discount ? (
+                  <View style={styles.discountTag}>
+                    <Text style={styles.discountText}>{food.discount}</Text>
+                  </View>
                 ) : null}
-                <Text style={styles.foodPrice}>{food.price}</Text>
-                <TouchableOpacity>
-                  <MaterialCommunityIcons name="heart-outline" size={18} color={colors.primary} style={{ marginLeft: 8 }} />
+                
+                <TouchableOpacity style={styles.foodFavouriteButton}>
+                  <MaterialCommunityIcons name="heart-outline" size={14} color={colors.primary} />
                 </TouchableOpacity>
               </View>
-            </View>
+              
+              <View style={styles.foodInfo}>
+                <Text style={styles.foodName}>{food.name}</Text>
+                <View style={styles.foodRatingRow}>
+                  <MaterialIcons name="star" size={12} color={colors.primary} />
+                  <Text style={styles.foodRating}> {food.rating}</Text>
+                  <Text style={styles.foodReviews}>({food.reviews})</Text>
+                </View>
+                <View style={styles.foodPriceRow}>
+                  {food.oldPrice ? (
+                    <Text style={styles.foodOldPrice}>{food.oldPrice}</Text>
+                  ) : null}
+                  <Text style={styles.foodPrice}>{food.price}</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
           ))}
         </ScrollView>
+
         {/* Homecooks Near You */}
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Homecooks near You</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('HomecooksScreen')}>
+          <TouchableOpacity onPress={() => navigation.navigate('Homecooks')}>
             <Text style={styles.sectionAction}>See All</Text>
           </TouchableOpacity>
         </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
           {homecooks.map(hc => (
-            <View key={hc.key} style={styles.homecookCard}>
-              <Image source={hc.image} style={styles.homecookImage} />
-              <View style={styles.homecookRatingTag}>
-                <MaterialIcons name="star" size={12} color="#fff" />
-                <Text style={styles.homecookRatingText}> {hc.rating}</Text>
+            <TouchableOpacity key={hc.key} style={styles.homecookCard}>
+              <View style={styles.homecookImageContainer}>
+                <Image source={hc.image} style={styles.homecookImage} />
+                <View style={styles.homecookRatingTag}>
+                  <MaterialIcons name="star" size={12} color="#fff" />
+                  <Text style={styles.homecookRatingText}> {hc.rating}</Text>
+                </View>
+                
+                <TouchableOpacity style={styles.homecookFavouriteButton}>
+                  <MaterialIcons name="favorite-border" size={18} color={colors.primary} />
+                </TouchableOpacity>
               </View>
-              <Text style={styles.homecookName}>{hc.name}</Text>
-              <Text style={styles.homecookSubtitle}>{hc.subtitle}</Text>
-              <Text style={styles.homecookInfo}>{hc.time} · {hc.distance}</Text>
-            </View>
+              
+              <View style={styles.homecookInfo}>
+                <Text style={styles.homecookName}>{hc.name}</Text>
+                <Text style={styles.homecookSubtitle}>{hc.subtitle}</Text>
+                <View style={styles.homecookDetails}>
+                  <MaterialIcons name="access-time" size={12} color={colors.primary} />
+                  <Text style={styles.homecookInfoText}>{hc.time} · {hc.distance}</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
           ))}
         </ScrollView>
+
         {/* Food Vouchers */}
 
       </ScrollView>
@@ -280,9 +304,7 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.white,
-    
-    
+    backgroundColor: '#f8f9fa',
   },
   
   topBar: {
@@ -290,7 +312,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 18,
     paddingTop: 10,
-    marginBottom: 10,
+    marginBottom: 20,
   },
   profilePic: {
     width: 44,
@@ -333,12 +355,19 @@ const styles = StyleSheet.create({
   searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#f7f7f7',
+    backgroundColor: '#fff',
     borderRadius: 16,
     marginHorizontal: 18,
     paddingHorizontal: 16,
     paddingVertical: 12,
-    marginBottom: 16,
+    marginBottom: 8,
+    borderWidth: 1,
+    borderColor: '#f0f0f0',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.06,
+    shadowRadius: 3,
+    elevation: 1,
   },
   searchPlaceholder: {
     flex: 1,
@@ -364,6 +393,11 @@ const styles = StyleSheet.create({
     color: '#222',
   },
   sectionAction: {
+    fontSize: 14,
+    color: colors.primary,
+    fontWeight: 'bold',
+  },
+  seeAllText: {
     fontSize: 14,
     color: colors.primary,
     fontWeight: 'bold',
@@ -401,11 +435,13 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   categoryBtn: {
-    paddingHorizontal: 18,
+    paddingHorizontal: 14,
     paddingVertical: 8,
     borderRadius: 20,
-    marginRight: 10,
+    marginRight: 8,
     borderWidth: 1,
+    minWidth: 85,
+    alignItems: 'center',
   },
   activeCategoryBtn: {
     backgroundColor: colors.primary,
@@ -416,7 +452,7 @@ const styles = StyleSheet.create({
     borderColor: colors.primary,
   },
   categoryText: {
-    fontSize: 15,
+    fontSize: 13,
     fontWeight: 'bold',
   },
   activeCategoryText: {
@@ -427,111 +463,133 @@ const styles = StyleSheet.create({
   },
   foodRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginHorizontal: 18,
+    marginLeft: 18,
     marginBottom: 10,
   },
   foodCard: {
-    width: 150,
+    width: 130,
     backgroundColor: '#fff',
-    borderRadius: 18,
-    padding: 10,
-    marginRight: 10,
+    borderRadius: 12,
+    marginRight: 12,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.07,
-    shadowRadius: 4,
-    elevation: 2,
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 4,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: '#f0f0f0',
+  },
+  foodImageContainer: {
+    position: 'relative',
   },
   foodImage: {
     width: '100%',
-    height: 80,
-    borderRadius: 12,
-    marginBottom: 6,
+    height: 70,
+    backgroundColor: '#f0f0f0',
   },
   discountTag: {
     position: 'absolute',
-    top: 10,
-    left: 10,
+    top: 6,
+    left: 6,
     backgroundColor: colors.primary,
-    borderRadius: 8,
-    paddingHorizontal: 6,
+    borderRadius: 6,
+    paddingHorizontal: 5,
     paddingVertical: 2,
   },
   discountText: {
     color: '#fff',
-    fontSize: 11,
+    fontSize: 9,
     fontWeight: 'bold',
   },
+  foodFavouriteButton: {
+    position: 'absolute',
+    top: 6,
+    right: 6,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 1,
+  },
+  foodInfo: {
+    padding: 10,
+    borderTopWidth: 1,
+    borderTopColor: '#f0f0f0',
+    backgroundColor: '#fff',
+  },
   foodName: {
-    fontSize: 15,
+    fontSize: 13,
     fontWeight: 'bold',
     color: '#222',
-    marginBottom: 2,
+    marginBottom: 4,
   },
   foodRatingRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 2,
+    marginBottom: 8,
   },
   foodRating: {
-    fontSize: 13,
+    fontSize: 11,
     color: colors.primary,
     fontWeight: 'bold',
   },
   foodReviews: {
-    fontSize: 12,
+    fontSize: 10,
     color: '#888',
     marginLeft: 4,
   },
   foodPriceRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 2,
   },
   foodOldPrice: {
-    fontSize: 12,
+    fontSize: 11,
     color: '#888',
     textDecorationLine: 'line-through',
-    marginRight: 4,
+    marginRight: 6,
   },
   foodPrice: {
-    fontSize: 15,
+    fontSize: 13,
     color: colors.primary,
     fontWeight: 'bold',
-    marginRight: 8,
-  },
-  foodFav: {
-    fontSize: 18,
-    color: colors.primary,
-    marginLeft: 'auto',
   },
   homecookCard: {
-    width: 220,
+    width: 240,
     backgroundColor: '#fff',
-    borderRadius: 18,
-    marginRight: 14,
-    padding: 12,
+    borderRadius: 12,
+    marginRight: 16,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.07,
-    shadowRadius: 4,
-    elevation: 2,
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 4,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: '#f0f0f0',
+  },
+  homecookImageContainer: {
+    position: 'relative',
   },
   homecookImage: {
     width: '100%',
-    height: 100,
-    borderRadius: 14,
-    marginBottom: 8,
+    height: 120,
+    backgroundColor: '#f0f0f0',
   },
   homecookRatingTag: {
     position: 'absolute',
-    top: 16,
-    left: 16,
+    top: 12,
+    left: 12,
     backgroundColor: colors.primary,
     borderRadius: 8,
-    paddingHorizontal: 6,
-    paddingVertical: 2,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -540,76 +598,47 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: 'bold',
   },
+  homecookFavouriteButton: {
+    position: 'absolute',
+    top: 12,
+    right: 12,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 1,
+  },
+  homecookInfo: {
+    padding: 12,
+    borderTopWidth: 1,
+    borderTopColor: '#f0f0f0',
+    backgroundColor: '#fff',
+  },
   homecookName: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#222',
-    marginBottom: 2,
+    marginBottom: 4,
   },
   homecookSubtitle: {
     fontSize: 13,
     color: '#888',
-    marginBottom: 2,
+    marginBottom: 6,
   },
-  homecookInfo: {
-    fontSize: 12,
-    color: '#888',
-  },
-  voucherCard: {
-    width: 180,
-    height: 80,
-    borderRadius: 18,
-    backgroundColor: colors.primary,
-    marginRight: 14,
-    padding: 16,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  voucherImage: {
-    position: 'absolute',
-    left: 10,
-    top: 10,
-    width: 60,
-    height: 60,
-    borderRadius: 12,
-  },
-  voucherTitle: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginLeft: 70,
-  },
-  voucherDiscount: {
-    color: '#fff',
-    fontSize: 14,
-    marginLeft: 70,
-  },
-  bottomNav: {
+  homecookDetails: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: '#fff',
-    paddingVertical: 14,
-    paddingBottom: 50,
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: -2 },
-    shadowOpacity: 0.07,
-    shadowRadius: 4,
-    elevation: 2,
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
   },
-  navBtn: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  navIcon: {
-    fontSize: 28,
-    color: colors.primary,
+  homecookInfoText: {
+    fontSize: 12,
+    color: '#666',
+    marginLeft: 4,
   },
 });
 
