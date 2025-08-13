@@ -13,6 +13,7 @@ import {
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { colors } from '../styles/colors';
+import { commonStyles } from '../styles/common';
 
 const categories = [
   { key: 'all', label: 'All', icon: <MaterialCommunityIcons name="food" size={20} /> },
@@ -106,13 +107,19 @@ const vouchers = [
 
 const HomeScreen = ({ navigation }) => {
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const navigateToOffers = () => {
+    navigation.navigate('OffersScreen');
+  };
+  const navigateToFavourites = () => {
+    navigation.navigate('FavouritesScreen');
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor={colors.white} />
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 90 }}
+        contentContainerStyle={commonStyles.contentContainer}
       >
         {/* Top Bar */}
         <View style={styles.topBar}>
@@ -128,10 +135,18 @@ const HomeScreen = ({ navigation }) => {
             </View>
           </View>
           <View style={styles.topIcons}>
-            <TouchableOpacity style={styles.iconCircle}>
+            <TouchableOpacity
+              style={styles.iconCircle}
+              onPress={() => navigation.navigate('NotificationsScreen')}
+              activeOpacity={0.7}
+            >
               <MaterialCommunityIcons name="bell-outline" size={22} color={colors.primary} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.iconCircle}>
+            <TouchableOpacity
+              style={styles.iconCircle}
+              onPress={() => navigation.navigate('CartScreen')}
+              activeOpacity={0.7}
+            >
               <MaterialCommunityIcons name="shopping-outline" size={22} color={colors.primary} />
             </TouchableOpacity>
           </View>
@@ -151,8 +166,11 @@ const HomeScreen = ({ navigation }) => {
         {/* Special Offers */}
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Special Offers</Text>
-          <TouchableOpacity>
-            <Text style={styles.sectionAction}>See All</Text>
+          <TouchableOpacity
+            style={styles.seeAllButton}
+            onPress={navigateToOffers}
+          >
+            <Text style={styles.seeAllText}>See All</Text>
           </TouchableOpacity>
         </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
@@ -232,7 +250,7 @@ const HomeScreen = ({ navigation }) => {
         {/* Homecooks Near You */}
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Homecooks near You</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('HomecooksScreen')}>
             <Text style={styles.sectionAction}>See All</Text>
           </TouchableOpacity>
         </View>
@@ -251,40 +269,10 @@ const HomeScreen = ({ navigation }) => {
           ))}
         </ScrollView>
         {/* Food Vouchers */}
-        <View style={styles.sectionHeader}>
-          <Text style={styles.sectionTitle}>Food Vouchers</Text>
-          <TouchableOpacity>
-            <Text style={styles.sectionAction}>See All</Text>
-          </TouchableOpacity>
-        </View>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
-          {vouchers.map(voucher => (
-            <View key={voucher.key} style={styles.voucherCard}>
-              <Image source={voucher.image} style={styles.voucherImage} />
-              <Text style={styles.voucherTitle}>{voucher.title}</Text>
-              <Text style={styles.voucherDiscount}>{voucher.discount}</Text>
-            </View>
-          ))}
-        </ScrollView>
+
       </ScrollView>
       {/* Sticky Bottom Navigation */}
-      <View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.navBtn}>
-          <MaterialCommunityIcons name="home-variant" size={28} color={colors.primary} />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navBtn}>
-          <MaterialCommunityIcons name="clipboard-text-outline" size={28} color={colors.primary} />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navBtn}>
-          <MaterialCommunityIcons name="percent" size={28} color={colors.primary} />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navBtn}>
-          <MaterialCommunityIcons name="heart-outline" size={28} color={colors.primary} />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navBtn}>
-          <MaterialCommunityIcons name="account-outline" size={28} color={colors.primary} />
-        </TouchableOpacity>
-      </View>
+
     </SafeAreaView>
   );
 };
@@ -293,7 +281,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.white,
+    
+    
   },
+  
   topBar: {
     flexDirection: 'row',
     alignItems: 'center',
